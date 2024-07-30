@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class Form {
 	private Integer num;
+	private String message;
 }

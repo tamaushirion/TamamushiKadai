@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.model.FModel;
 import com.example.repository.FizzbuzzMapper;
-import com.example.service.FizzbuzzService;
+import com.example.service.ItemService;
 
 @Service
-public class FizzbuzzServiceImpl implements FizzbuzzService {
+public class ServiceImpl implements ItemService {
 	
 	@Autowired
 	private FizzbuzzMapper mapper;
