@@ -1,11 +1,13 @@
 package com.example.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
-public class FizzbuzzService {
+import com.example.model.FModel;
 
-	public String fizzbuzzService(int a) {
+
+public interface FizzbuzzService {
+
+	public default String fizzbuzzService(int a) {
 		
 		int b = a + 100;
 		String result = "";
@@ -28,7 +30,6 @@ public class FizzbuzzService {
 		
 	}
 	
-	public String InputData;
-	public String inputData;
+	public List<FModel> findNum();
 }
 
