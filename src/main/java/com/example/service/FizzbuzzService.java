@@ -29,5 +29,6 @@ public class FizzbuzzService {
 	}
 	
 	public String InputData;
+	public String inputData;
 }
 
