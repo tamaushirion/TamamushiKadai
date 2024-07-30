@@ -3,14 +3,14 @@ package com.example.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FizzbuzzService {
+public class BuzzService {
 
-	public  Boolean fizzbuzzService(int a) {
+	public  Boolean buzzService(int a) {
 
 		int b = a + 100;
 		Boolean result = true;
 
-		if (b % 5 == 0 && b % 3 == 0) {
+		if (b % 5 == 0) {
 			result = false;
 		}
 
