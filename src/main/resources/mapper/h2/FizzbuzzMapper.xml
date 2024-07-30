@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapperとxmlのマッピング -->
+<mapper namespace="com.example.repository.FizzbuzzMapper">
+
+<!-- マッピング定義(fizzbuzz) -->
+<resultMap type="com.example.model.FModel" id="num">
+<id column="num" property="num" />
+</resultMap>
+
+<!-- 過去数値3件取得 -->
+<select id="findNum" resultType="com.example.model.FModel">
+  select
+    *
+    
+  from
+    fizzbuzz_details
+   limit 3;
+</select>
+
+</mapper>
