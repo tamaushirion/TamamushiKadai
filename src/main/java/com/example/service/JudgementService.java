@@ -22,23 +22,25 @@ public class JudgementService {
 		
 		
 		List<String> message = new ArrayList<String>();
+		List<Integer> number = new ArrayList<Integer>();
 		
 		for(int i = inputNum; i <= inputNum + 100; i++) {
 			
 			if(fizzbuzzService.fizzbuzzJudgementService(i)) {
 				
 				message.add("FizzBuzz");
-			    
+				number.add(i);
 			} else if(fizzService.fizzJudgementService(i)) {
 				
 				message.add("Fizz");
-				
+				number.add(i);
 			} else if(buzzService.buzzJudgementService(i)) {
 				
 				message.add("Buzz");
-				
+				number.add(i);
 			} else {
 				message.add("None");
+				number.add(i);
 			}
 			
 		}
