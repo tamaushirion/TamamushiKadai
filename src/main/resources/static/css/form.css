@@ -6,3 +6,17 @@
 .form-group {
     text-align: center;
 }
+
+td.FizzBuzz {
+    color: blue;
+}
+
+.Buzz {
+    color: red;
+}
+
+.textColor {
+    color: yellow;
+}
+
+

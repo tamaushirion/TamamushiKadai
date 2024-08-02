@@ -20,4 +20,8 @@ public class ServiceImpl implements ItemService {
 		return mapper.findNum();
 	}
 	
+	@Override
+	public void insertNum(FModel model) {
+		mapper.insertNum(model);
+	}
 }

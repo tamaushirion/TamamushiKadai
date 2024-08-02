@@ -2,56 +2,81 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/css//form.css}">
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/form.css}">
 
-	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
-	<script th:src="@{/webjars/bootstrap/bootstrap.min.js}" defer></script>
+<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 
-	<title>Fizzbuzz</title>
+<script>
+	window.onload = (function() {
+		$('.FizzBuzz').click(function() {
+            $(this).attr('id', 'style-ul');
+            $('#style-ul').toggleClass('textColor');
+            $(this).toggleClass('FizzBuzz');
+});
+});
+</script>
+<title>Fizzbuzz</title>
+
 </head>
 
 <body class="bg-light">
-	<form id="add-form" method="post" th:action="@{'/html/form'}" class="form-add" th:object="${form}">
-		<h1 class="form-group">Fizzbuzz</h1>
+	<form id="add-form" method="post" th:action="@{'/Fizzbuzz'}"
+		class="form-add" th:object="${form}">
+		<h1 class="form-group">FizzBuzz</h1>
 		<!-- 数字入力 -->
 		<div class="form-group">
-			<label for="id">数字入力</label>
-			<input type="text" class="form-control" th:field="*{num}" th:errorclass="is-invalid" />
+			<label for="id">数字入力</label> <input style="text-align: center"
+				type="text" class="form-control" th:field="*{num}"
+				th:errorclass="is-invalid" />
 			<div class="invalid-feedback" th:errors="*{num}"></div>
 		</div>
-		
+
 		<!-- FizzBuzz出力 -->
-		<div class="form-group">
-			<label for="id">結果</label>
-			<input type="text" class="form-control" th:field="*{message}" />
+		<div>
+			<table class="table table-striped table-bordered table-hover">
+				<thead class="thead-light">
+					<tr>
+						<th style="text-align: center" class="th-width">結果</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="list: ${messageList}">
+						<td style="text-align: center" th:text="${list}"
+							th:classappend="${(list == 'FizzBuzz' ? 'FizzBuzz' : '') + (list == 'Buzz' ? 'Buzz' : '')}">
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-		
+
 		<!-- 追加ボタン -->
 		<div class="form-group">
 			<input type="submit" value="実行" class="btn btn-primary w-100 mt-3" />
 		</div>
-		
+
 		<!-- 過去数字表示 -->
-	<div>
-	    <table class="table table-striped table-bordered table-hover">
-	        <thead class="thead-light">
-	            <tr>
-	                <th class="th-width">過去入力数値</th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	            <tr th:each="item: ${numedList}">
-	                <td th:text="${item.num}"></td>
-	            </tr>
-	        </tbody>
-	    </table>
-	</div>
+		<div>
+			<table class="table table-striped table-bordered table-hover">
+				<thead class="thead-light">
+					<tr>
+						<th style="text-align: center" class="th-width">過去入力数値</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item: ${numedList}">
+						<td style="text-align: center" th:text="${item.num}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</form>
-	
+
 </body>
 
 </html>

@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class FizzService {
 
-	public Boolean fizzService(int a) {
+	public Boolean fizzJudgementService(int inputNum) {
 
-		int b = a + 100;
-		Boolean result = true;
+		
+		Boolean result = false;
 
-		if (b % 3 == 0) {
-			result = false;
+		if (inputNum % 3 == 0) {
+			result = true;
 		}
 
 		return result;

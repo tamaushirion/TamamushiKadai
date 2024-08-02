@@ -5,18 +5,30 @@
 <mapper namespace="com.example.repository.FizzbuzzMapper">
 
 <!-- マッピング定義(fizzbuzz) -->
-<resultMap type="com.example.model.FModel" id="num">
-<id column="num" property="num" />
+<resultMap type="com.example.model.FModel" id="id">
+<id column="id" property="id" />
+<result column="num" property="num" />
+<result column="message" property="message" />
 </resultMap>
 
 <!-- 過去数値3件取得 -->
 <select id="findNum" resultType="com.example.model.FModel">
-  select
-    *
+  SELECT
+    num
     
-  from
+  FROM
     fizzbuzz_details
-   limit 3;
+  ORDER BY id DESC
+   LIMIT 3;
 </select>
+
+<insert id="insertNum">
+  INSERT INTO fizzbuzz_details 
+  (num, message) 
+  VALUES (
+  #{num}
+, #{message}
+)
+</insert>
 
 </mapper>
