@@ -48,18 +48,15 @@ public class FizzbuzzController {
 
 		FModel number = modelMapper.map(form, FModel.class);
 
-		Integer inputNum = number.getNum();
+		String inputNum = number.getNum();
 
 		if (bindingResult.hasErrors()) {
 			
-			String messageList = "整数で入力してください";
-			
-			model.addAttribute("messageList", messageList);
 			return this.getFizzbuzz(model, form);
 		}
 
 		List<String> messageList = resultService.ResultJudgementService(inputNum);
-		List<Integer> numeberList = numberService.NumberService(inputNum);
+		List<String> numeberList = numberService.NumberService(inputNum);
 		
 		//判定結果格納
 		model.addAttribute("messageList", messageList);

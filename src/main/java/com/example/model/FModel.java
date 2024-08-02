@@ -4,6 +4,6 @@ import lombok.Data;
 @Data
 public class FModel {
 	
-	private Integer num;
+	private String num;
 	private String message;
 }

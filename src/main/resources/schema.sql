@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS fizzbuzz_details (
 id INT AUTO_INCREMENT,
- num INT,
+ num VARCHAR(40),
  message VARCHAR(40)
 );

@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class NumberJudgementService {
 	
-	public List<Integer> NumberService(int inputNum) {
+	public List<String> NumberService(String inputNum) {
 		
-		List<Integer> number = new ArrayList<Integer>();
-		for(int i = inputNum; i <= inputNum + 100; i++) {
-			number.add(i);
+		int num = Integer.parseInt(inputNum);
+		
+		List<String> number = new ArrayList<String>();
+		for(int i = num; i <= num + 100; i++) {
+			
+			number.add(String.valueOf(i));
 		}
 		
 		return number;
