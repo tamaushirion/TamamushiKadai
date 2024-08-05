@@ -16,7 +16,6 @@ import com.example.form.Form;
 import com.example.model.FModel;
 import com.example.service.ItemService;
 import com.example.service.JudgementService;
-import com.example.service.NumberJudgementService;
 
 @Controller
 public class FizzbuzzController {
@@ -29,9 +28,6 @@ public class FizzbuzzController {
 
 	@Autowired
 	private ModelMapper modelMapper;
-	
-	@Autowired
-	private NumberJudgementService numberService;
 
 	@GetMapping("/Fizzbuzz")
 	public String getFizzbuzz(Model model, @ModelAttribute Form form) {
@@ -55,12 +51,10 @@ public class FizzbuzzController {
 			return this.getFizzbuzz(model, form);
 		}
 
-		List<String> messageList = resultService.ResultJudgementService(inputNum);
-		List<String> numeberList = numberService.NumberService(inputNum);
+		String[][] resultList = resultService.ResultJudgementService(inputNum);
 		
 		//判定結果格納
-		model.addAttribute("messageList", messageList);
-		model.addAttribute("numeberList", numeberList);
+		model.addAttribute("resultList", resultList);
 		
 		//数値追加
 		service.insertNum(number);

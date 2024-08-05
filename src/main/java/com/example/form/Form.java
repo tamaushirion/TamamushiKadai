@@ -9,7 +9,7 @@ import lombok.Data;
 public class Form {
 
 	@NotBlank
-	@Pattern(regexp = "^[1-9]|100+$")
+	@Pattern(regexp = "^[1-9]|[1-9][0-9]|100+$")
 	private String num;
 	
 	private String message;

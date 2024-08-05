@@ -19,9 +19,5 @@ td.FizzBuzz {
     color: yellow;
 }
 
-.column{
-    display: flex;
-    align-items: flex-start;
-    text-align: center;
-}
+
 

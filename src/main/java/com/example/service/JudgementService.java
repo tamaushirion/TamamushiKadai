@@ -1,8 +1,5 @@
 package com.example.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,33 +15,34 @@ public class JudgementService {
 	@Autowired
 	private BuzzService buzzService;
 	
-	public List<String> ResultJudgementService(String inputNum) {
+	public String[][] ResultJudgementService(String inputNum) {
 		
 		int num = Integer.parseInt(inputNum);
+		String[][] result = new String[100][2];
 		
-		List<String> message = new ArrayList<String>();
-		
-		for(int i = num; i <= num + 100; i++) {
+		for(int i = 0; i < 100; i++) {
 			
-			if(fizzbuzzService.fizzbuzzJudgementService(i)) {
+			if(fizzbuzzService.fizzbuzzJudgementService(num + i)) {
 				
-				message.add("FizzBuzz");
-			} else if(fizzService.fizzJudgementService(i)) {
+				result[i][0] = "FizzBuzz";
+				result[i][1] = String.valueOf(num + i);
+			} else if(fizzService.fizzJudgementService(num + i)) {
 				
-				message.add("Fizz");
+				result[i][0] = "Fizz";
+				result[i][1] = String.valueOf(num + i);
+			} else if(buzzService.buzzJudgementService(num + i)) {
 				
-			} else if(buzzService.buzzJudgementService(i)) {
-				
-				message.add("Buzz");
-				
+				result[i][0] = "Buzz";
+				result[i][1] = String.valueOf(num + i);
 			} else {
-				message.add("None");
 				
+				result[i][0] = "None";
+				result[i][1] = String.valueOf(num + i);
 			}
 			
 		}
 		
-		return message;
+		return result;
 	}
 	
 }
