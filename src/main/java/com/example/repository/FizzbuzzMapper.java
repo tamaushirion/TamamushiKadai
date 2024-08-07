@@ -11,4 +11,7 @@ public interface FizzbuzzMapper {
 	
 	/* 過去数値3件取得 */
 	public List<FModel> findNum();
+	
+	/* 入力数値登録 */
+	public int insertNum(FModel model);
 }

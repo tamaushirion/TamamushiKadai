@@ -6,81 +6,60 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.form.Form;
 import com.example.model.FModel;
-import com.example.service.BuzzService;
-import com.example.service.FizzService;
-import com.example.service.FizzbuzzService;
 import com.example.service.ItemService;
+import com.example.service.JudgementService;
 
 @Controller
 public class FizzbuzzController {
-	
+
 	@Autowired
 	private ItemService service;
-	
+
 	@Autowired
-	private FizzbuzzService fizzbuzzService;
-	
-	@Autowired
-	private FizzService fizzService;
-	
-	@Autowired
-	private BuzzService buzzService;
-	
+	private JudgementService resultService;
+
 	@Autowired
 	private ModelMapper modelMapper;
 
 	@GetMapping("/Fizzbuzz")
 	public String getFizzbuzz(Model model, @ModelAttribute Form form) {
-		
+
 		List<FModel> numedList = service.findNum();
-		
+
 		model.addAttribute("numedList", numedList);
-		
+
 		return "/html/form";
 	}
-	
-	
-	@PostMapping("/html/form")
-	public String postFizzbuzz(Model model, @ModelAttribute Form form) {
-		
+
+	@PostMapping("/Fizzbuzz")
+	public String postFizzbuzz(Model model, @ModelAttribute @Validated Form form, BindingResult bindingResult) {
+
 		FModel number = modelMapper.map(form, FModel.class);
-		
-		Integer a = number.getNum();
-		
-		String message = "";
-		
-		if(a < 1 && a > 100) {
-			message = "1~100で入力してください";
-			return "rediarect:/html/form";
+
+		String inputNum = number.getNum();
+
+		if (bindingResult.hasErrors()) {
+			
+			return this.getFizzbuzz(model, form);
 		}
+
+		String[][] resultList = resultService.ResultJudgementService(inputNum);
 		
-		if(!fizzbuzzService.fizzbuzzService(a)) {
-			
-			message = "FizzBuzz";
-					
-		} else if(!fizzService.fizzService(a)) {
-			
-			message = "Fizz";
-			
-		} else if(!buzzService.buzzService(a)) {
-			
-			message = "Buzz";
-			
-		} else {
-			message = "NotFizzBuzz";
-		}
+		//判定結果格納
+		model.addAttribute("resultList", resultList);
 		
-		form = modelMapper.map(message, Form.class);
-		
-		model.addAttribute("form", form);
-		
-		return "/html/form";
-		
+		//数値追加
+		service.insertNum(number);
+
+		return this.getFizzbuzz(model, form);
+
 	}
 }
